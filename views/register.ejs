@@ -14,23 +14,40 @@
 <body>
     <%- include('partials/navbar.ejs') %>
     <div class="container my-5">
+        <% if (messages.success) { %>
+        <div class="alert alert-success" role="alert">
+            <strong> <%- messages.success %> </strong>
+        </div>
+        <% } %>
+        <% if (messages.error) { %>
+        <div class="alert alert-danger" role="alert">
+            <strong> <%- messages.error%> </strong>
+        </div>
+        <% } %>
         <div class="card mx-auto" style="width: 500px;">
             <div class="card-header">
                 <h2 class="text-center my-2">Register</h2>
             </div>
-            <form action="" method="post">
+            <form action="/register" method="post">
                 <div class="card-body">
                     <div class="form-group">
                         <label for="">Username</label>
-                        <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+                        <input type="text" class="form-control" name="username" id="" aria-describedby="helpId"
+                            placeholder="">
+                        <small id="helpId" class="form-text text-muted">Minimal 8 karakter</small>
+
                     </div>
                     <div class="form-group">
                         <label for="">Email</label>
-                        <input type="email" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+                        <input type="email" class="form-control" name="email" id="" aria-describedby="helpId"
+                            placeholder="">
                     </div>
                     <div class="form-group">
                         <label for="">Password</label>
-                        <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+                        <input type="password" class="form-control" name="password" id="" aria-describedby="helpId"
+                            placeholder="">
+                        <small id="helpId" class="form-text text-muted">Minimal 8 karakter</small>
+
                     </div>
                 </div>
                 <div class="card-footer text-center">
