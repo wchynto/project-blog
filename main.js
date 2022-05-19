@@ -6,40 +6,22 @@ import "./config/database.js";
 const port = 3000;
 const app = express();
 
-app.set("view engine", "ejs");
+//import routes
+import homeRoute from "./routes/home_route.js";
+import postsRoute from "./routes/posts_route.js";
+import aboutRoute from "./routes/about_route.js";
+import registerRoute from "./routes/register_route.js";
+import loginRoute from "./routes/login_route.js";
 
+app.set("view engine", "ejs");
 app.use(morgan("short"));
 
 //route on here
-app.get("/", (req, res) => {
-  res.render("home", {
-    name: "home",
-  });
-});
-
-app.get("/posts", (req, res) => {
-  res.render("posts", {
-    name: "posts",
-  });
-});
-
-app.get("/about", (req, res) => {
-  res.render("about", {
-    name: "about",
-  });
-});
-
-app.get("/register", (req, res) => {
-  res.render("register", {
-    name: "register",
-  });
-});
-
-app.get("/login", (req, res) => {
-  res.render("login", {
-    name: "login",
-  });
-});
+app.get("/", homeRoute);
+app.get("/posts", postsRoute);
+app.get("/about", aboutRoute);
+app.get("/register", registerRoute);
+app.get("/login", loginRoute);
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);

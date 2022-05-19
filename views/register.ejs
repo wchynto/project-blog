@@ -13,7 +13,33 @@
 
 <body>
     <%- include('partials/navbar.ejs') %>
-    <h1 class="m-5">Ini Register</h1>
+    <div class="container my-5">
+        <div class="card mx-auto" style="width: 500px;">
+            <div class="card-header">
+                <h2 class="text-center my-2">Register</h2>
+            </div>
+            <form action="" method="post">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="">Username</label>
+                        <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Email</label>
+                        <input type="email" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Password</label>
+                        <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <button type="submit" class="btn btn-primary my-2"
+                        style="width: 150px; height: 40px;">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/js/bootstrap.bundle.js'
