@@ -3,6 +3,7 @@ import morgan from "morgan";
 import session from "express-session";
 import expressFlash from "express-flash";
 import cookieParser from "cookie-parser";
+import passport from "passport";
 
 import "./config/database.js";
 
@@ -33,6 +34,8 @@ app.use(
   })
 );
 app.use(expressFlash());
+app.use(passport.initialize());
+app.use(passport.session());
 
 //route on here
 app.use("/", homeRoute);
