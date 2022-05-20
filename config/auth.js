@@ -22,7 +22,7 @@ passport.use(
           if (!same) {
             return done(null, false, { message: "Email atau password salah" });
           }
-          return done(null, same);
+          return done(null, user);
         });
       });
     }

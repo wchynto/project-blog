@@ -16,6 +16,7 @@ import postsRoute from "./routes/posts_route.js";
 import aboutRoute from "./routes/about_route.js";
 import registerRoute from "./routes/register_route.js";
 import loginRoute from "./routes/login_route.js";
+import dashboardRoute from "./routes/dashboard_route.js";
 
 app.set("view engine", "ejs");
 app.use(morgan("short"));
@@ -28,7 +29,7 @@ app.use(
 app.use(cookieParser());
 app.use(
   session({
-    secret: "my secret",
+    secret: "session",
     saveUninitialized: false,
     resave: false,
   })
@@ -43,6 +44,7 @@ app.use("/posts", postsRoute);
 app.use("/about", aboutRoute);
 app.use("/register", registerRoute);
 app.use("/login", loginRoute);
+app.use("/dashboard", dashboardRoute);
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
