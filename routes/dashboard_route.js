@@ -10,7 +10,7 @@ const ensureAuthentcated = (req, res, next) => {
 router.get(
   "/",
   ensureAuthentcated,
-  passport.authenticate("verifyJwt"),
+  passport.authenticate("verifyJwt", { session: false }),
   (req, res) => {
     console.log(req.user);
     res.render("dashboard", { name: "dashboard", user: req.user });

@@ -43,12 +43,13 @@ passport.use(
       secretOrKey: secretKey,
       jwtFromRequest: cookieExtractor,
     },
-    async (token, done) => {
-      try {
-        return done(null, token);
-      } catch (error) {
-        return done(err);
-      }
+    (jwt_payload, done) => {
+      User.findOne(jwt_payload.email, (err, user) => {
+        if (!user) {
+          return done(null, false);
+        }
+        return done(null, user);
+      });
     }
   )
 );
