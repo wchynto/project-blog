@@ -20,33 +20,33 @@ const register = async (req, res) => {
   }
 };
 
-const login = async (req, res) => {
-  try {
-    const validationResults = validationResult(req);
-    if (!validationResults.isEmpty()) {
-      req.flash("error", "Username dan password minimal 8 karakter");
-      res.redirect("/login");
-    } else {
-      const user = req.body;
-      User.findOne(user.name, (err, results) => {
-        if (!results) {
-          req.flash("error", "Email dan password salah");
-          res.redirect("/login");
-        }
-        bcrypt.compare(user.password, results.password, (error, same) => {
-          if (!same) {
-            req.flash("error", "Email atau password salah");
-            res.redirect("/login");
-          } else {
-            req.flash("success", "Login berhasil");
-            res.redirect("/");
-          }
-        });
-      });
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};
+// const login = async (req, res) => {
+//   try {
+//     const validationResults = validationResult(req);
+//     if (!validationResults.isEmpty()) {
+//       req.flash("error", "Username dan password minimal 8 karakter");
+//       res.redirect("/login");
+//     } else {
+//       const user = req.body;
+//       User.findOne(user.name, (err, results) => {
+//         if (!results) {
+//           req.flash("error", "Email dan password salah");
+//           res.redirect("/login");
+//         }
+//         bcrypt.compare(user.password, results.password, (error, same) => {
+//           if (!same) {
+//             req.flash("error", "Email atau password salah");
+//             res.redirect("/login");
+//           } else {
+//             req.flash("success", "Login berhasil");
+//             res.redirect("/");
+//           }
+//         });
+//       });
+//     }
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
-export { register, login };
+export { register };

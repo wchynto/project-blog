@@ -2,14 +2,12 @@ import passport from "passport";
 import passportJwt from "passport-jwt";
 import passportLocal from "passport-local";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 import User from "../models/user_model.js";
 import "dotenv/config";
 
 const secretKey = process.env.SECRET_KEY;
 const localStrategy = passportLocal.Strategy;
 const jwtStrategy = passportJwt.Strategy;
-const extractJwt = passportJwt.ExtractJwt;
 
 const cookieExtractor = (req) => {
   let token = req.cookies.token;
@@ -18,10 +16,13 @@ const cookieExtractor = (req) => {
 
 passport.use(
   "login",
-  new localStrategy(
-    { usernameField: "email", passwordField: "password" },
+  new localStrategy({
+    usernameField: 'email',
+  passwordField: 'password'
+    
+  },
     (email, password, done) => {
-      User.findOne(email.email, (err, user) => {
+      User.findOne({email: email}, (err, user) => {
         if (!user) {
           return done(null, false, { message: "Email atau password salah" });
         }
@@ -44,7 +45,7 @@ passport.use(
       jwtFromRequest: cookieExtractor,
     },
     (jwt_payload, done) => {
-      User.findOne(jwt_payload.email, (err, user) => {
+      User.findOne({email: jwt_payload.email}, (err, user) => {
         if (!user) {
           return done(null, false);
         }

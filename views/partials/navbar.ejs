@@ -16,7 +16,9 @@
                 <a class="nav-link" href="/about">About Us</a>
             </li>
         </ul>
+
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <% if (!user) { %>
             <li class="nav-item <% if (name === 'register') {%> active <% } %>">
                 <a class="nav-link" href="/register">Register</span></a>
             </li>
@@ -24,6 +26,14 @@
             <li class="nav-item <% if (name === 'login') {%> active <% } %>">
                 <a class="nav-link" href="/login">Login</a>
             </li>
+            <% } else {%>
+            <li class="nav-item">
+                <form action="/logout" method="post">
+                    <button class="btn nav-link" type="submit">Logout</button>
+                </form>
+            </li>
+            <% } %>
         </ul>
+
     </div>
 </nav>

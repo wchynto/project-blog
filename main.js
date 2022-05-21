@@ -17,6 +17,7 @@ import aboutRoute from "./routes/about_route.js";
 import registerRoute from "./routes/register_route.js";
 import loginRoute from "./routes/login_route.js";
 import dashboardRoute from "./routes/dashboard_route.js";
+import logoutRoute from "./routes/logout_route.js";
 
 app.set("view engine", "ejs");
 app.use(morgan("short"));
@@ -46,8 +47,9 @@ app.use("/register", registerRoute);
 app.use("/login", loginRoute);
 app.use("/dashboard", dashboardRoute);
 app.get("*", (req, res) => {
-  res.render("notFound", { name: "notFound" });
+  res.redirect("/");
 });
+app.use("/logout", logoutRoute);
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
