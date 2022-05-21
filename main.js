@@ -45,6 +45,9 @@ app.use("/about", aboutRoute);
 app.use("/register", registerRoute);
 app.use("/login", loginRoute);
 app.use("/dashboard", dashboardRoute);
+app.get("*", (req, res) => {
+  res.render("notFound", { name: "notFound" });
+});
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);

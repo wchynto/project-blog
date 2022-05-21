@@ -4,10 +4,17 @@ import passportLocal from "passport-local";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/user_model.js";
+import "dotenv/config";
 
+const secretKey = process.env.SECRET_KEY;
 const localStrategy = passportLocal.Strategy;
-// const jwtStrategy = passportJwt.Strategy;
-// const extractJwt = passportJwt.ExtractJwt;
+const jwtStrategy = passportJwt.Strategy;
+const extractJwt = passportJwt.ExtractJwt;
+
+const cookieExtractor = (req) => {
+  let token = req.cookies.token;
+  return token;
+};
 
 passport.use(
   "login",
@@ -25,6 +32,23 @@ passport.use(
           return done(null, user);
         });
       });
+    }
+  )
+);
+
+passport.use(
+  "verifyJwt",
+  new jwtStrategy(
+    {
+      secretOrKey: secretKey,
+      jwtFromRequest: cookieExtractor,
+    },
+    async (token, done) => {
+      try {
+        return done(null, token);
+      } catch (error) {
+        return done(err);
+      }
     }
   )
 );
