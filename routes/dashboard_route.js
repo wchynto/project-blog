@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get(
   "/",
-  passport.authenticate("verifyJwt", {session: false, failureRedirect: '/'}),
+  passport.authenticate("verifyJwt", { failureRedirect: "/" }),
   (req, res) => {
     res.render("dashboard", { name: "dashboard", user: req.user });
   }

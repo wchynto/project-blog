@@ -18,15 +18,19 @@ router.post("/", loginValidator, (req, res, next) => {
     {
       failureRedirect: "/login",
       failureFlash: true,
-      session: false,
     },
     (err, user) => {
       const token = jwt.sign(
         { id: user._id, username: user.username, email: user.email },
         secretKey
       );
-      res.cookie("token", token);
-      res.redirect("/dashboard");
+      if (!user) {
+        req.flash('error', "Emai atau password salah")
+        res.redirect('/login')
+      } else {
+        res.cookie("token", token);
+        res.redirect("/dashboard");
+      }
     }
   )(req, res, next);
 });

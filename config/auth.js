@@ -16,15 +16,18 @@ const cookieExtractor = (req) => {
 
 passport.use(
   "login",
-  new localStrategy({
-    usernameField: 'email',
-  passwordField: 'password'
-    
-  },
+  new localStrategy(
+    {
+      usernameField: "email",
+      passwordField: "password",
+    },
     (email, password, done) => {
-      User.findOne({email: email}, (err, user) => {
+      User.findOne({ email: email }, (err, user) => {
         if (!user) {
-          return done(null, false, { message: "Email atau password salah" });
+          return done(null, false, {
+            session: false,
+            message: "Email atau password salah",
+          });
         }
         bcrypt.compare(password, user.password, (err, same) => {
           if (!same) {
@@ -45,7 +48,7 @@ passport.use(
       jwtFromRequest: cookieExtractor,
     },
     (jwt_payload, done) => {
-      User.findOne({email: jwt_payload.email}, (err, user) => {
+      User.findOne({ email: jwt_payload.email }, (err, user) => {
         if (!user) {
           return done(null, false);
         }
