@@ -9,12 +9,26 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css'
         integrity='sha512-T584yQ/tdRR5QwOpfvDfVQUidzfgc2339Lc8uBDtcp/wYu80d7jwBgAxbyMh0a9YM9F8N3tdErpFI8iaGx6x5g=='
         crossorigin='anonymous' />
+    <style type="text/css">
+        #sub-text {
+            white-space: nowrap;
+            width: 500px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
 </head>
 
 <body>
     <%- include('partials/navbar.ejs') %>
-    <h1 class="m-5">Ini Home</h1>
+    <div class="container mt-5">
+        <% posts.forEach(post => { %>
+            <a href=""><h3><%= post.title %></h3></a>
+            <p id="sub-text"><%= post.article %></p>
+        <% }) %>
+    </div>
 </body>
+
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js'
     integrity='sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=='
     crossorigin='anonymous'></script>
