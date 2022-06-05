@@ -24,7 +24,7 @@ import usersRoute from "./routes/users_route.js";
 app.set("view engine", "ejs");
 app.set("views", "public/views");
 app.use(express.static(path.join(__dirname, "public/")));
-app.use(morgan("combined"));
+app.use(morgan("short"));
 app.use(express.json());
 app.use(
   express.urlencoded({

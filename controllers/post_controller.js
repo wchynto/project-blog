@@ -14,7 +14,7 @@ const getAllPost = async (req, res, next) => {
 const getOnePost = async (req, res, next) => {
     try {
         const post = await Post.findById({ _id: req.params.id });
-        res.locals.post = Post;
+        res.locals.post = post;
         next();
     } catch (error) {
         console.log(erro);
@@ -40,7 +40,7 @@ const createPost = async (req, res) => {
         const savedPost = await post.save();
         user.posts.push(savedPost);
         user.save();
-        res.redirect("/dashboard/posts");
+        res.redirect("/dashboard/posts/" + req.user.id);
     } catch (error) {
         console.log(error);
     }
@@ -65,4 +65,11 @@ const deletePost = async (req, res) => {
     }
 };
 
-export { getPostByUser, getAllPost, createPost, updatePost, deletePost };
+export {
+    getPostByUser,
+    getOnePost,
+    getAllPost,
+    createPost,
+    updatePost,
+    deletePost,
+};

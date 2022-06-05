@@ -33,7 +33,7 @@ router.get(
 );
 
 router.post(
-  "/posts/create/:id",
+  "/posts/create",
   passport.authenticate("verifyJwt", { failureRedirect: "/" }),
   createPost
 );

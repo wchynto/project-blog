@@ -23,7 +23,7 @@
     <%- include('partials/navbar.ejs') %>
     <div class="container mt-5">
         <% posts.forEach(post => { %>
-            <a href=""><h3><%= post.title %></h3></a>
+            <a href="/posts/<%= post._id %>"><h3><%= post.title %></h3></a>
             <p id="sub-text"><%= post.article %></p>
         <% }) %>
     </div>
